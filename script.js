@@ -1,20 +1,22 @@
 const plants = document.querySelectorAll('.plant');
 
-plants.forEach((plant) => {
-  if ('ontouchstart' in window) {
+if ('ontouchstart' in window) {
+  plants.forEach((plant) => {
     makeDraggable(plant, { 
       start: 'touchstart',
       move: 'touchmove',
       end: 'touchend'
     });
-  } else {
+  });
+} else {
+  plants.forEach((plant) => {
     makeDraggable(plant, { 
       start: 'mousedown',
       move: 'mousemove',
       end: 'mouseup'
     });
-  }
-});
+  });
+}
 
 function makeDraggable(plant, events) {
   const { start, move, end } = events;
