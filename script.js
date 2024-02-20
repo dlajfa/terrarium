@@ -21,6 +21,7 @@ function makeDraggable(plant, events) {
   });
 
   function movePlant(event) {
+    event.preventDefault();
     const dx = event.clientX - clientX;
     const dy = event.clientY - clientY;
     plant.style.left = offsetLeft + dx + 'px';
