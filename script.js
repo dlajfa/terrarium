@@ -1,39 +1,24 @@
 const plants = document.querySelectorAll('.plant');
 
-if ('ontouchstart' in window) {
-  plants.forEach((plant) => {
-    makeDraggable(plant, { 
-      start: 'touchstart',
-      move: 'touchmove',
-      end: 'touchend'
-    });
-  });
-} else {
-  plants.forEach((plant) => {
-    makeDraggable(plant, { 
-      start: 'mousedown',
-      move: 'mousemove',
-      end: 'mouseup'
-    });
-  });
+for (const plant of plants) {
+  makeDraggable(plant);
 }
 
-function makeDraggable(plant, events) {
-  const { start, move, end } = events;
+function makeDraggable(plant) {
   let offsetLeft, offsetTop, clientX, clientY;
 
-  plant.addEventListener(start, (event) => {
+  plant.addEventListener('pointerdown', (event) => {
     event.preventDefault();
     offsetLeft = plant.offsetLeft;
     offsetTop = plant.offsetTop;
     clientX = event.clientX;
     clientY = event.clientY;
-    document.addEventListener(move, movePlant);
+    document.addEventListener('pointermove', movePlant);
   });
 
-  document.addEventListener(end, (event) => {
+  document.addEventListener('pointerup', (event) => {
     event.preventDefault();
-    document.removeEventListener(move, movePlant);
+    document.removeEventListener('pointermove', movePlant);
   });
 
   function movePlant(event) {
