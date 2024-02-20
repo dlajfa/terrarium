@@ -16,7 +16,8 @@ function makeDraggable(plant, events) {
     document.addEventListener('pointermove', movePlant);
   });
 
-  document.addEventListener('pointerup', () => {
+  document.addEventListener('pointerup', (event) => {
+    event.preventDefault();
     document.removeEventListener('pointermove', movePlant);
   });
 
