@@ -7,18 +7,18 @@ for (const plant of plants) {
 function makeDraggable(plant) {
   let offsetLeft, offsetTop, clientX, clientY;
 
-  plant.addEventListener('pointerdown', (event) => {
+  plant.addEventListener('mousedown', (event) => {
     event.preventDefault();
     offsetLeft = plant.offsetLeft;
     offsetTop = plant.offsetTop;
     clientX = event.clientX;
     clientY = event.clientY;
-    document.addEventListener('pointermove', movePlant);
+    document.addEventListener('mousemove', movePlant);
   });
 
-  document.addEventListener('pointerup', (event) => {
+  document.addEventListener('mouseup', (event) => {
     event.preventDefault();
-    document.removeEventListener('pointermove', movePlant);
+    document.removeEventListener('mousemove', movePlant);
   });
 
   function movePlant(event) {
